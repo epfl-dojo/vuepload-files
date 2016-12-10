@@ -1,14 +1,16 @@
 # vuepload-files
 Upload webapp using node and vuejs
 
-# Init environement
+Using proxies with webpack (great functionality) to avoid crossorigin problems (even the manageability in node)
+
+## Init environement
 ```
 npm i
 cd frontend-src
 npm i
 ```
 
-# How to dev
+## How to dev
 ```
 npm run start //runs api
 
@@ -18,7 +20,7 @@ npm run dev //run the vue dev env (hot reload + proxies on api and jsonplacehold
 open: http://localhost:8080/
 ```
 
-# How to build and run in 'pseudo' prod
+## How to build and run in 'pseudo' prod
 ```
 npm run start
 
