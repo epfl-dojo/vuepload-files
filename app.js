@@ -1,19 +1,23 @@
 var express = require('express')
 var multer  = require('multer')
-var upload = multer({ dest: './uploads/' })
 
-var app = express()
-app.use(express.static('static/dist'))
-
-app.get('/', function (req, res) {
-  res.send('Hello World!')
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/' )
+  },
+  filename: function (req, file, cb) {
+    cb(null,  Date.now() + '-' + file.originalname)
+  }
 })
 
+var upload = multer({ storage: storage })
+
+var app = express()
+app.use(express.static('public'))
+
 app.post('/file', upload.single('avatar'), function (req, res, next) {
-  console.log("Hey there")
-  res.json({id:"test"})
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
+  console.log("Hey there avatar, file was uploaded")
+  res.json({status:"it works"})
 })
 
 app.listen(3000, function () {

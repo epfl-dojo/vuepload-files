@@ -3,7 +3,7 @@
     <form role="form" class="form" onsubmit="return false;">
       <div class="form-group">
         <label for="file">File</label>
-        <input id="file" type="file" class="form-control"/>
+        <input id="avatar" name="avatar" type="file" class="form-control"/>
       </div>
       <button id="upload" type="button" class="btn btn-primary" @click="send">Upload</button>
     </form>
@@ -21,15 +21,16 @@
     methods:{
       send(){
         var data = new FormData();
-          data.append('foo', 'bar');
-          data.append('file', document.getElementById('file').files[0]);
+          data.append('avatar', document.getElementById('avatar').files[0]);
           var config = {
             onUploadProgress: function(progressEvent) {
               var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
             },
-          header
+            headers: {
+              'Access-Control-Allow-Origin': '*'
+            }
           };
-          axios.put('http://localhost:3000/file', data, config)
+          axios.post('api/file', data, config)
             .then(function (res) {
               console.log('sent')
             })

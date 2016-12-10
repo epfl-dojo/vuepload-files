@@ -38,3 +38,5 @@ jspm_packages
 
 */.vscode
 uploads/*
+public/*
+
