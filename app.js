@@ -15,7 +15,7 @@ var upload = multer({ storage: storage })
 var app = express()
 app.use(express.static('public'))
 
-app.post('/file', upload.single('avatar'), function (req, res, next) {
+app.post('/api/file', upload.single('avatar'), function (req, res, next) {
   console.log("Hey there avatar, file was uploaded")
   res.json({status:"it works"})
 })
