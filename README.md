@@ -29,3 +29,9 @@ npm run build //will build the app in the public folder shared by express
 
 open: http://localhost:3000/
 ```
+
+## Next steps
+
+- Create a nice user interface to:
+  - manage files (add/delete)
+  - upload through a drag and drop zone
