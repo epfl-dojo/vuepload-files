@@ -15,7 +15,7 @@ npm i
 npm run start //runs api
 
 cd frontend-src
-npm run dev //run the vue dev env (hot reload + proxies on api and jsonplaceholder)
+npm run dev //run the vue dev env (hot reload + proxies on /api and /placeholder)
 
 open: http://localhost:8080/
 ```
@@ -33,5 +33,6 @@ open: http://localhost:3000/
 ## Next steps
 
 - Create a nice user interface to:
-  - manage files (add/delete)
+  - Add upload progress bar
   - upload through a drag and drop zone
+  - manage files (add/delete)

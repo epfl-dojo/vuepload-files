@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="container">
     <hello></hello>
   </div>
 </template>
@@ -19,6 +19,5 @@ export default {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

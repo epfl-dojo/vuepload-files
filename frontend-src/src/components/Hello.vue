@@ -1,8 +1,11 @@
 <template>
   <div class="hello">
-    <h1>I'm the parent!!!</h1>
+    <h1>Upload page</h1>
+    <p>(parent component)</p>
+    <hr>
     <upload @addFile="addFile"></upload>
     <hr>
+    <h2>File list: (todo)</h2>
     <ul>
       <li v-for="file in files">
         {{ file.path }}
