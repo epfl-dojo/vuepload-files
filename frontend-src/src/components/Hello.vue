@@ -23,6 +23,16 @@ export default {
       files: [{ path: './youpidou.youpi', date: new Date()}]
     }
   },
+  created() {
+    var that = this;
+    var socket = io.connect('http://localhost:3000')
+    io.origins = 'http://*:3000'
+
+    socket.on('files', function (data) {
+      console.log('files emited from server', data)
+      that.files = data
+    })
+  },
   components: {
     upload
   },

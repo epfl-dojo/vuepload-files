@@ -10,7 +10,9 @@
   "author": "stefanonepa <stefano.nepa@epfl.ch>",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "4.14.0",
-    "multer": "1.2.0"
+    "multer": "1.2.0",
+    "socket.io": "^1.7.2"
   }
 }
