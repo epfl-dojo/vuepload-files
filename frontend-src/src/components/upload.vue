@@ -12,23 +12,34 @@
         <button type="button" class="btn btn-primary" @click="send" :disabled="isNotSelected">Upload</button>
       </span>
     </div>
+    <div v-show ="uploading" class="progress">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" :aria-valuenow="percentCompleted" aria-valuemin="0" aria-valuemax="100" 
+            :style="{width: percentCompleted+'%'}">
+        {{ percentCompleted }}%
+      </div>
+    </div>
   </div>
 </template>
 <script>
   export default{
     data() {
       return {
-        selectedFile: ''
+        selectedFile: '',
+        percentCompleted: 0
       }
     },
     computed: {
        isNotSelected(){
         return this.selectedFile === ''
+      },
+      uploading() {
+        return this.percentCompleted > 0
       }
     },
     methods:{
       remove() {
         this.selectedFile = ''
+        this.percentCompleted = 0
       },
       selection(ev) {
         this.selectedFile = ev.target.files[0].name
@@ -39,7 +50,7 @@
         data.append('avatar', document.getElementById('avatar').files[0]);
         var config = {
           onUploadProgress: function(progressEvent) {
-            var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+            self.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
           },
           headers: {
             'Access-Control-Allow-Origin': '*'
