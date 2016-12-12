@@ -18,14 +18,10 @@ var app = express()
 app.use(express.static('public'))
 app.use(cors())
 
-var fakeFiles = [
-  { id:1, path: './from.server.1', date: new Date()}, 
-]
-
 var server = http.createServer(app)
 var io = require('socket.io')(server)
 io.on('connection', function (socket) {
-  socket.emit('files', fakeFiles)
+  refreshFiles()
 });
 
 app.get('/api/refreshFiles', function(req, res){
@@ -37,15 +33,21 @@ app.get('/api/refreshFiles', function(req, res){
 * Upload entry point
 */
 app.post('/api/file', upload.single('avatar'), function (req, res, next) {
-  console.log("Hey there avatar, file was uploaded")
+  //console.log("Hey there avatar, file was uploaded")
+  refreshFiles()
   res.json({status:"it works"})
 })
 
 server.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Listening on port 3000!')
 })
 
 function refreshFiles(){
-  fakeFiles.push({id: 345, path: './from.server.' + new Date().getSeconds() , date: new Date()})
-  io.emit('files', fakeFiles)
+  const testFolder = './uploads/';
+  fs.readdir(testFolder, (err, files) => {
+    io.emit('files', files.filter(x => x !== '.gitkeep').map(file => {
+      return { path: file, date: new Date() }
+    }))
+  })
 }
+

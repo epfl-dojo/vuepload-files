@@ -31,7 +31,7 @@
         this.selectedFile = ''
       },
       selection(ev) {
-        this.selectedFile = ev.srcElement.files[0].name
+        this.selectedFile = ev.target.files[0].name
       },
       send(){
         var self = this
