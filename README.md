@@ -3,6 +3,8 @@ Upload webapp using node and vuejs
 
 Using proxies with webpack (great functionality) to avoid crossorigin problems (even the manageability in node)
 
+!!! Carefull there is no check about security for the delete and download file !!!
+
 ## Init environement
 ```
 npm i
@@ -33,6 +35,7 @@ open: http://localhost:3000/
 ## Next steps
 
 - Create a nice user interface to:
-  - Add upload progress bar
   - upload through a drag and drop zone
-  - manage files (add/delete)
+- Try to proxy the websocket through webpack (https://github.com/webpack/webpack-dev-server/issues/283)
+- Secure the file management (through db?)
+
