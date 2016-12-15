@@ -3,6 +3,8 @@ Upload webapp using node and vuejs
 
 Using proxies with webpack (great functionality) to avoid crossorigin problems (even the manageability in node)
 
+!!! Carefull there is no check about security for the delete and download file !!!
+
 ## Init environement
 ```
 npm i
