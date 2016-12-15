@@ -32,10 +32,37 @@ app.get('/api/refreshFiles', function(req, res){
 /*
 * Upload entry point
 */
-app.post('/api/file', upload.single('avatar'), function (req, res, next) {
+app.post('/api/upload', upload.single('avatar'), function (req, res, next) {
   //console.log("Hey there avatar, file was uploaded")
   refreshFiles()
   res.json({status:"it works"})
+})
+
+app.get('/api/delete/:path', function (req, res, next) {
+  let filePath = './uploads/'+req.params.path
+  if (fs.existsSync(filePath)) {
+    fs.unlink(filePath,function(err){
+      if(err){
+        res.json({status:"error"})
+      } else {
+        res.json({status:"it works"})
+      }
+      refreshFiles()
+    })
+  } else {
+    res.json({status:"error"})
+  }
+  refreshFiles()
+})
+
+app.get('/api/get/:path', function (req, res, next) {
+  let filePath = './uploads/'+req.params.path
+  if (fs.existsSync(filePath)) {
+    res.download(filePath)
+  } else {
+    res.json({status:"it works"})
+  }
+  refreshFiles()
 })
 
 server.listen(3000, function () {

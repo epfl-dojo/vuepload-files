@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <hello></hello>
+    <filelist></filelist>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello.vue'
+import filelist from './components/filelist.vue'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    filelist
   }
 }
 </script>

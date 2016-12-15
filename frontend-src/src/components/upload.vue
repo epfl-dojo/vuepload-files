@@ -8,8 +8,8 @@
       </label>
       <input type="text" class="form-control" v-model="selectedFile" readonly>
       <span class="input-group-btn">
-        <button type="button" class="btn btn-danger" @click="remove" :disabled="isNotSelected">Delete</button>
-        <button type="button" class="btn btn-primary" @click="send" :disabled="isNotSelected">Upload</button>
+        <button type="button" class="btn btn-warning" @click="remove" :disabled="isNotSelected">Reset</button>
+        <button type="button" class="btn btn-success" @click="send" :disabled="isNotSelected">Upload</button>
       </span>
     </div>
     <div v-show ="uploading" class="progress">
@@ -45,6 +45,7 @@
         this.selectedFile = ev.target.files[0].name
       },
       send(){
+        this.selectedFile = ''
         var self = this
         var data = new FormData();
         data.append('avatar', document.getElementById('avatar').files[0]);
@@ -55,8 +56,8 @@
           headers: {
             'Access-Control-Allow-Origin': '*'
           }
-        }
-        axios.post('api/file', data, config)
+        }        
+        axios.post('api/upload', data, config)
         .then(function (res) {
           console.log('sent')
           self.remove()
