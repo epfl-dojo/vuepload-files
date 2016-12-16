@@ -35,7 +35,7 @@ export default {
   },
   created() {
     var that = this;
-    var socket = io.connect('http://localhost:3000')
+    var socket = io.connect('')
     //io.origins = 'http://*:3000'
 
     socket.on('files', function (data) {
